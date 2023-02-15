@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TaskController!{% endblock %}
+
+{% block body %}
+
+{% block javascripts %}
+
+{#
+<script src='js/index.global.min.js'></script>
+<script src='js/index.js' ></script>    #}
+{% endblock %}
+
+{#
+<div id="calendar"></div>
+#}
+
+
+
+        {% for task in tasks %}       
+           
+              {#  <td><b>{{ noticia.id }}<b></td> #}
+            
+                <h3>Tarea ID:<b>{{ task.id}}</b></h3>
+                <p>Estado: {{task.state}}</p>
+                <p>Estado Request: {{task.getStateRequest}}</p>
+                <p>User: {{task.user}}</p>
+                <p>Evento: {{task.event}}</p>
+                <p>Hora de Comienzo: {{task.getStartTime| date ('y-M-d H:m')}}</p>
+                <p>Hora de Fin: {{task.getEndTime| date ('y-M-d H:m')}}</p>
+
+
+              {#  <p>Estado reques : {{task.state_request}}</p>
+               
+                <p>Estado: {{task.start_time | date ('d/m/y')}}</p> #}
+
+              
+
+             {#   <p> <form method="POST" action="{{path('app_comentario_edit',{'id':comentario.id })}}"> #}
+
+             <form method="POST" action="#">
+                        <input role="button" class="BotonMargenIz btn btn-success" onclick="return confirm('¿Vas de modificar una tarea?')" class="BotonMargenIz" type="submit" value="Editar tarea"> </p>
+                    </form>
+                 
+             {% endfor %}  
+
+             <h1> Tareas de hoy <h1>
+
+        
+              {% for allMyTask in allMyTasks %}       
+           
+              {#  <td><b>{{ noticia.id }}<b></td> #}
+      
+              
+                {% if  app.user.userIdentifier== comentario.autor.email %}
+                <p> <form method="POST" action="{{path('app_comentario_edit',{'id':comentario.id })}}">
+                        <input role="button" class="BotonMargenIz btn btn-success btn-sm" onclick="return confirm('¿Vas de modificar un comentario?')" class="BotonMargenIz" type="submit" value="Editar comentario"> </p>
+                    </form>
+
+            {#  Formulario de editar borrar #}
+                <p> <form method="POST" action="{{path('app_comentario_delete',{'id':comentario.id })}}">
+                        <input role="button" class="BotonMargenIz btn btn-warning btn-sm" onclick="return confirm('¿Vas de borrar para siempre un comentario?')" class="BotonMargenIz" type="submit" value="Borrar comentario"> </p>
+                    </form>
+
+                    {% endif %}
+              
+                              <h3>Tarea ID:<b>{{ task.id}}</b></h3>
+                <p>Estado: {{task.state}}</p>
+                <p>Estado Request: {{task.getStateRequest}}</p>
+                <p>User: {{task.user}}</p>
+                <p>Evento: {{task.event}}</p>
+                <p>Hora de Comienzo: {{task.getStartTime| date ('y-M-d H:m')}}</p>
+                <p>Hora de Fin: {{task.getEndTime| date ('y-M-d H:m')}}</p>
+
+
+              {#  <p>Estado reques : {{task.state_request}}</p>
+               
+                <p>Estado: {{task.start_time | date ('d/m/y')}}</p> #}
+
+              
+
+             {#   <p> <form method="POST" action="{{path('app_comentario_edit',{'id':comentario.id })}}"> #}
+
+             <form method="POST" action="#">
+                        <input role="button" class="BotonMargenIz btn btn-success" onclick="return confirm('¿Vas de modificar una tarea?')" class="BotonMargenIz" type="submit" value="Editar tarea"> </p>
+                    </form>
+                 
+             {% endfor %}  
+
+{% endblock %}
